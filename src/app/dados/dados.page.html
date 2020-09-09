@@ -6,18 +6,57 @@
 
 <ion-content>
   <ion-item>
-    <ion-label position="stacked">Nome do Jogador 1</ion-label>
-    <ion-input [(ngModel)]="nick1"></ion-input>
-  </ion-item>
-  <ion-item>
-    <ion-label position="stacked">Nome do Jogador 2</ion-label>
-    <ion-input [(ngModel)]="nick2"></ion-input>
-  </ion-item>
-  <ion-item>
     <ion-label position="stacked">Patida a distância</ion-label>
     <ion-toggle [(ngModel)]="online"></ion-toggle>
   </ion-item>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-label position="stacked">Nome do Jogador 1</ion-label>
+          <ion-input [(ngModel)]="nick1"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="6">
+        <ion-item>
+          <ion-label>Ícone</ion-label>
+          <ion-select [(ngModel)]="icone1" (ionChange)="selecionouIcone(1)">
+            <ion-select-option value="x">X</ion-select-option>
+            <ion-select-option value="o">O</ion-select-option>
+          </ion-select>
+        </ion-item>
+      </ion-col>
+      <ion-col size="6">
+        <img src="./assets/{{icone1}}.png">
+      </ion-col>
+    </ion-row>
+    <ion-row *ngIf="!online">
+      <ion-col>
+        <ion-item>
+          <ion-label position="stacked">Nome do Jogador 2</ion-label>
+          <ion-input [(ngModel)]="nick2"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row *ngIf="!online">
+      <ion-col size="6">
+        <ion-item>
+          <ion-label>Ícone</ion-label>
+          <ion-select [(ngModel)]="icone2" (ionChange)="selecionouIcone(2)">
+            <ion-select-option value="x">X</ion-select-option>
+            <ion-select-option value="o">O</ion-select-option>
+          </ion-select>
+        </ion-item>
+      </ion-col>
+      <ion-col size="6">
+        <img src="./assets/{{icone2}}.png">
+      </ion-col>
+    </ion-row>
+  </ion-grid>
   <ion-item>
-    <ion-button color="primary" (click)="iniciarPartida()" [disabled]="nick1 == '' || nick2 == ''">Iniciar Partida</ion-button>
+    <ion-button color="primary" (click)="iniciarPartida()" [disabled]="nick1 == '' || (!online && nick2 == '')">Iniciar Partida
+    </ion-button>
   </ion-item>
 </ion-content>
