@@ -1,0 +1,68 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Partida</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-item>
+    <b>Jogador Atual:</b>&nbsp;{{jogadorAtual}}
+  </ion-item>
+  <ion-item>
+    <ion-grid>
+      <ion-row>
+        <ion-col class="altura-coluna" size="4">
+          <div class="ion-text-center">
+            <img src="{{partida.label1 ? './assets/' + partida.label1 + '.png' : '' }}">
+          </div>
+        </ion-col>
+        <ion-col class="altura-coluna" size="4">
+          <div class="ion-text-center">
+            <img src="{{partida.label2 ? './assets/' + partida.label2 + '.png' : '' }}">
+          </div>
+        </ion-col>
+        <ion-col class="altura-coluna" size="4">
+          <div class="ion-text-center">
+            <img src="{{partida.label3 ? './assets/' + partida.label3 + '.png' : '' }}">
+          </div>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col class="altura-coluna" size="4">
+          <div class="ion-text-center">
+            <img src="{{partida.label4 ? './assets/' + partida.label4 + '.png' : '' }}">
+          </div>
+        </ion-col>
+        <ion-col class="altura-coluna" size="4">
+          <div class="ion-text-center">
+            <img src="{{partida.label5 ? './assets/' + partida.label5 + '.png' : '' }}">
+          </div>
+        </ion-col>
+        <ion-col class="altura-coluna" size="4">
+          <div class="ion-text-center">
+            <img src="{{partida.label6 ? './assets/' + partida.label6 + '.png' : '' }}">
+          </div>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col class="altura-coluna" size="4">
+          <div class="ion-text-center">
+            <img src="{{partida.label7 ? './assets/' + partida.label7 + '.png' : '' }}">
+          </div>
+        </ion-col>
+        <ion-col class="altura-coluna" size="4">
+          <div class="ion-text-center">
+            <img src="{{partida.label8 ? './assets/' + partida.label8 + '.png' : '' }}">
+          </div>
+        </ion-col>
+        <ion-col class="altura-coluna" size="4">
+          <div class="ion-text-center">
+            <img src="{{partida.label9 ? './assets/' + partida.label9 + '.png' : '' }}">
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-item>
+</ion-content>

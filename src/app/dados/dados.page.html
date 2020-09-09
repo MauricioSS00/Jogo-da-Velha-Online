@@ -1,0 +1,23 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Dados da Partida</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-item>
+    <ion-label position="stacked">Nome do Jogador 1</ion-label>
+    <ion-input [(ngModel)]="nick1"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label position="stacked">Nome do Jogador 2</ion-label>
+    <ion-input [(ngModel)]="nick2"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label position="stacked">Patida a distância</ion-label>
+    <ion-toggle [(ngModel)]="online"></ion-toggle>
+  </ion-item>
+  <ion-item>
+    <ion-button color="primary" (click)="iniciarPartida()" [disabled]="nick1 == '' || nick2 == ''">Iniciar Partida</ion-button>
+  </ion-item>
+</ion-content>
