@@ -85,6 +85,10 @@
         "always"
       ]
     },
+    "triple-equals": [
+      false,
+      "allow-null-check"
+    ],
     "space-before-function-paren": {
       "options": {
         "anonymous": "never",

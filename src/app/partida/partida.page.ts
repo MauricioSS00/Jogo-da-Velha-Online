@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
+import { PartidaService } from './partida.service';
 
 @Component({
   selector: 'app-partida',
@@ -15,18 +16,14 @@ export class PartidaPage implements OnInit {
 
   constructor(
     private router: Router,
-    private alertController: AlertController
+    private alertController: AlertController,
+    private partidaService: PartidaService
   ) { }
 
   ngOnInit() {
-    if (this.router.getCurrentNavigation().extras.state) {
-      this.partida = this.router.getCurrentNavigation().extras.state.partida;
-    } else {
-      this.partida = { nick1: 'Maurício', nick2: 'Ketlin', icone1: 'x', icone2: 'o', online: true };
-    }
+    this.partida = this.router.getCurrentNavigation().extras.state;
     this.jogadorAtual = this.partida.nick1;
     this.iconeAtual = this.partida.icone1;
-    this.partida.label = [];
   }
 
   async jogar(label: number) {
@@ -47,7 +44,7 @@ export class PartidaPage implements OnInit {
   }
 
   alternarJogador() {
-    if (this.jogadorAtual === this.partida.nick1) {
+    if (this.jogadorAtual == this.partida.nick1) {
       this.jogadorAtual = this.partida.nick2;
       this.iconeAtual = this.partida.icone2;
     } else {
@@ -57,21 +54,21 @@ export class PartidaPage implements OnInit {
   }
 
   async checarVitoria() {
-    if (this.partida.label[1] && this.partida.label[1] === this.partida.label[2] && this.partida.label[1] === this.partida.label[3]) {
+    if (this.partida.label[1] && this.partida.label[1] == this.partida.label[2] && this.partida.label[1] == this.partida.label[3]) {
       return true;
-    } else if (this.partida.label[4] && this.partida.label[4] === this.partida.label[5] && this.partida.label[4] === this.partida.label[6]) {
+    } else if (this.partida.label[4] && this.partida.label[4] == this.partida.label[5] && this.partida.label[4] == this.partida.label[6]) {
       return true;
-    } else if (this.partida.label[7] && this.partida.label[7] === this.partida.label[8] && this.partida.label[7] === this.partida.label[9]) {
+    } else if (this.partida.label[7] && this.partida.label[7] == this.partida.label[8] && this.partida.label[7] == this.partida.label[9]) {
       return true;
-    } else if (this.partida.label[1] && this.partida.label[1] === this.partida.label[4] && this.partida.label[1] === this.partida.label[7]) {
+    } else if (this.partida.label[1] && this.partida.label[1] == this.partida.label[4] && this.partida.label[1] == this.partida.label[7]) {
       return true;
-    } else if (this.partida.label[2] && this.partida.label[2] === this.partida.label[5] && this.partida.label[2] === this.partida.label[8]) {
+    } else if (this.partida.label[2] && this.partida.label[2] == this.partida.label[5] && this.partida.label[2] == this.partida.label[8]) {
       return true;
-    } else if (this.partida.label[3] && this.partida.label[3] === this.partida.label[6] && this.partida.label[3] === this.partida.label[9]) {
+    } else if (this.partida.label[3] && this.partida.label[3] == this.partida.label[6] && this.partida.label[3] == this.partida.label[9]) {
       return true;
-    } else if (this.partida.label[1] && this.partida.label[1] === this.partida.label[5] && this.partida.label[1] === this.partida.label[9]) {
+    } else if (this.partida.label[1] && this.partida.label[1] == this.partida.label[5] && this.partida.label[1] == this.partida.label[9]) {
       return true;
-    } else if (this.partida.label[3] && this.partida.label[3] === this.partida.label[5] && this.partida.label[3] === this.partida.label[7]) {
+    } else if (this.partida.label[3] && this.partida.label[3] == this.partida.label[5] && this.partida.label[3] == this.partida.label[7]) {
       return true;
     }
     return false;
