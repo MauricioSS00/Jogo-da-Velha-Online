@@ -1,10 +1,11 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Dados da Partida</ion-title>
+    <ion-title *ngIf="!acessandoPartida">Dados da Partida</ion-title>
+    <ion-title *ngIf="acessandoPartida">Acessar Partida</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content *ngIf="!acessandoPartida">
   <ion-item>
     <ion-label position="stacked">Patida a distância</ion-label>
     <ion-toggle [(ngModel)]="online"></ion-toggle>
@@ -56,7 +57,54 @@
     </ion-row>
   </ion-grid>
   <ion-item>
-    <ion-button color="primary" (click)="iniciarPartida()" [disabled]="nick1 == '' || (!online && nick2 == '')">Iniciar Partida
+    <ion-button color="primary" (click)="iniciarPartida()" [disabled]="nick1 == '' || (!online && nick2 == '')">Iniciar
+      Partida
     </ion-button>
+  </ion-item>
+</ion-content>
+
+<ion-content *ngIf="acessandoPartida">
+  <ion-grid *ngIf="!partidaLocalizada">
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-label position="stacked">Código da Partida</ion-label>
+          <ion-input [(ngModel)]="token"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-item *ngIf="!partidaLocalizada">
+    <ion-button color="primary" (click)="buscarPartida()" [disabled]="token == 0 || token.toString().length < 14">
+      Entrar na Partida
+    </ion-button>
+  </ion-item>
+
+  <ion-grid *ngIf="partidaLocalizada">
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-label position="stacked">Nome do Jogador</ion-label>
+          <ion-input [(ngModel)]="nick2"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="6">
+        <ion-item>
+          <ion-label>Ícone</ion-label>
+          <ion-select [(ngModel)]="icone2" [disabled]="true">
+            <ion-select-option value="x">X</ion-select-option>
+            <ion-select-option value="o">O</ion-select-option>
+          </ion-select>
+        </ion-item>
+      </ion-col>
+      <ion-col size="6">
+        <img src="./assets/{{icone2}}.png">
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-item *ngIf="partidaLocalizada">
+    <ion-button color="primary" (click)="acessarPartida(true)" [disabled]="nick2 == ''">Acessar Partida</ion-button>
   </ion-item>
 </ion-content>

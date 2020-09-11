@@ -10,9 +10,13 @@ export class HomePage {
 
   constructor(
     private router: Router
-  ) {}
+  ) { }
 
   abrirDadosPartida() {
     this.router.navigate(['dados']);
+  }
+
+  entrarPartida() {
+    this.router.navigateByUrl('/dados', { state: { acessarPartida: true } });
   }
 }

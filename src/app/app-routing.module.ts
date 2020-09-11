@@ -16,7 +16,7 @@ const routes: Routes = [
     loadChildren: () => import('./dados/dados.module').then( m => m.DadosPageModule)
   },
   {
-    path: 'partida',
+    path: 'partida/:codJogador',
     loadChildren: () => import('./partida/partida.module').then( m => m.PartidaPageModule)
   },
 ];
