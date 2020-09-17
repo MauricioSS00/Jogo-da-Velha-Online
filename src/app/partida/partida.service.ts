@@ -26,4 +26,8 @@ export class PartidaService {
   async buscarPartidaPorCampo(campo: string, value: any) {
     return this.afs.collection('partidas', ref => ref.where(campo, '==', value)).valueChanges();
   }
+
+  async buscarPartidas() {
+    return this.afs.collection('partidas').valueChanges();
+  }
 }

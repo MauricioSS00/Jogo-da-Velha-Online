@@ -8,7 +8,7 @@
 <ion-content *ngIf="!acessandoPartida">
   <ion-item>
     <ion-label position="stacked">Patida a distância</ion-label>
-    <ion-toggle [(ngModel)]="online"></ion-toggle>
+    <ion-toggle [(ngModel)]="online" [disabled]="true"></ion-toggle>
   </ion-item>
   <ion-grid>
     <ion-row>
@@ -75,7 +75,7 @@
     </ion-row>
   </ion-grid>
   <ion-item *ngIf="!partidaLocalizada">
-    <ion-button color="primary" (click)="buscarPartida()" [disabled]="token == 0 || token.toString().length < 14">
+    <ion-button color="primary" (click)="buscarPartida()" [disabled]="token == 0 || token.toString().length < 13">
       Entrar na Partida
     </ion-button>
   </ion-item>

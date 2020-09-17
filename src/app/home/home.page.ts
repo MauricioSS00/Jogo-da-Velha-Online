@@ -19,4 +19,8 @@ export class HomePage {
   entrarPartida() {
     this.router.navigateByUrl('/dados', { state: { acessarPartida: true } });
   }
+
+  historicoPartidas() {
+    this.router.navigate(['historico']);
+  }
 }

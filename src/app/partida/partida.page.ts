@@ -13,6 +13,7 @@ export class PartidaPage implements OnInit {
   partida: any;
   alertSegJogador: any;
   alertAgurdAdv: any;
+  alertGeral: any;
   jogador: number;
 
   constructor(
@@ -135,7 +136,7 @@ export class PartidaPage implements OnInit {
           this.exibirAlerta('Não foi dessa Vez!', `Ninguém ganhou, que pena, mas vamos para a proxima!`);
         }
       } else {
-        this.exibirAlerta('Vitória!!!!', `Parabéns ${this.partida.jogadorAtual} pela vitória!`);
+        this.exibirAlerta('Vitória!!!!', `Parabéns ${this.partida.jogadorAtual} pela vitória!`, true);
       }
     }
   }
@@ -150,7 +151,7 @@ export class PartidaPage implements OnInit {
         this.exibirAlerta('Não foi dessa Vez!', `Ninguém ganhou, que pena, mas vamos para a proxima!`);
       }
     } else {
-      this.exibirAlerta('Vitória!!!!', `Parabéns ${this.partida.jogadorAtual} pela vitória!`);
+      this.exibirAlerta('Vitória!!!!', `Parabéns ${this.partida.jogadorAtual} pela vitória!`, true);
     }
   }
 
@@ -194,14 +195,43 @@ export class PartidaPage implements OnInit {
     return false;
   }
 
-  async exibirAlerta(titulo: string, mensagem: string) {
-    const alert = await this.alertController.create({
+  async exibirAlerta(titulo: string, mensagem: string, vitoria = false) {
+    if (this.alertGeral) {
+      this.alertGeral.dismiss();
+    }
+    const buttons: any[] = [];
+    if (vitoria) {
+      buttons[0] = {
+        text: 'Jogar Novamente',
+        handler: () => {
+          if (this.jogador == 1) {
+            this.router.navigate(['dados']);
+          } else {
+            this.router.navigateByUrl('/dados', { state: { acessarPartida: true } });
+          }
+        }
+      };
+      buttons[1] = {
+        text: 'Ok',
+        handler: () => {
+          this.encerrarPartida();
+        }
+      };
+    } else {
+      buttons[0] = {
+        text: 'Ok',
+        handler: () => {
+          this.encerrarPartida();
+        }
+      };
+    }
+
+    this.alertGeral = await this.alertController.create({
       header: titulo,
       message: mensagem,
-      buttons: ['OK']
+      buttons: buttons
     });
-
-    await alert.present();
+    this.alertGeral.present();
   }
 
   async aguardandoJogador() {
@@ -247,5 +277,12 @@ export class PartidaPage implements OnInit {
       backdropDismiss: false,
     });
     this.alertAgurdAdv.present();
+  }
+
+  encerrarPartida() {
+    this.router.navigate(['home']);
+    if (this.alertAgurdAdv) {
+      this.alertAgurdAdv.dismiss();
+    }
   }
 }

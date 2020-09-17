@@ -13,7 +13,7 @@ export class DadosPage implements OnInit {
 
   nick1 = '';
   nick2 = '';
-  online = false;
+  online = true;
   icone1 = 'x';
   icone2 = 'o';
 
